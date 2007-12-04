@@ -1,6 +1,6 @@
 %define	name	fred
 %define	version	0.1.1
-%define	release	1mdk
+%define	release	 %mkrel 1
 %define Summary	Free Fallin' Fred
 
 Summary:	%{Summary}
