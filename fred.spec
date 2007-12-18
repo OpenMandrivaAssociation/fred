@@ -38,14 +38,15 @@ perl -pi -e 's!DATADIR = "/usr/local/share/games/fred/data/";!DATADIR = "%{_game
 rm -rf $RPM_BUILD_ROOT
 %makeinstall_std
 
-install -d %{buildroot}%{_menudir}
-cat <<EOF > %{buildroot}%{_menudir}/%{name}
-?package(%{name}):command="%{_gamesbindir}/%{name}" \
-		  icon=%{name}.png \
-		  needs="x11" \
-		  section="Amusement/Arcade" \
-		  title="Fred"\
-		  longtitle="%{Summary}"
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications/
+cat << EOF > %buildroot%{_datadir}/applications/mandriva-%{name}.desktop
+[Desktop Entry]
+Type=Application
+Exec=%{_gamesbindir}/%{name}		  
+Icon=%{name}		  		  
+Categories=Game;ArcadeGame;		  
+Name=Fred		  
+Comment=%{Summary}
 EOF
 
 %{__install} -m644 %{SOURCE11} -D $RPM_BUILD_ROOT%{_miconsdir}/%{name}.png
@@ -71,6 +72,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/%{name}.png
 %{_liconsdir}/%{name}.png
 %{_miconsdir}/%{name}.png
-%{_menudir}/%{name}
+%{_datadir}/applications/mandriva-%{name}.desktop
 %doc AUTHORS ChangeLog INSTALL NEWS README TODO
 
