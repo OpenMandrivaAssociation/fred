@@ -15,6 +15,7 @@ Patch0:		fred-0.1.1-no-windows.patch.bz2
 License:	GPL
 Url:		http://www.enormousplow.com/projects/fred/
 Group:		Games/Arcade
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	SDL_image-devel zlib-devel SDL_ttf-devel
 
 %description
