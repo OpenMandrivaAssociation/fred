@@ -1,22 +1,28 @@
-%define	name	fred
-%define	version	0.1.1
-%define	release	 %mkrel 1
-%define Summary	Free Fallin' Fred
-
-Summary:	%{Summary}
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
-Source0:	http://www.enormousplow.com/projects/fred/%{name}-%{version}.tar.bz2
+Summary:	Simple action game: save Fred from a plummeting death!
+Name:		fred
+Version:	0.1.1
+Release:	%mkrel 2
+# Upstream source includes arial.ttf. Which is, um, copyright
+# Microsoft. That's not smart. This source is upstream's tarball
+# with arial.ttf and the (likely also copyright someone) grease.ttf
+# removed. - AdamW 2008/02
+Source0:	http://www.enormousplow.com/projects/fred/%{name}-%{version}-fontclean.tar.bz2
 Source11:	%{name}-16x16.png
 Source12:	%{name}-32x32.png
 Source13:	%{name}-48x48.png
-Patch0:		fred-0.1.1-no-windows.patch.bz2
-License:	GPL
-Url:		http://www.enormousplow.com/projects/fred/
+Patch0:		fred-0.1.1-no-windows.patch
+# Fix an error in a header file that breaks build - AdamW 2008/02
+Patch1:		fred-0.1.1-build.patch
+# Use DejaVu instead of arial.ttf and grease.ttf - AdamW 2008/02
+Patch2:		fred-0.1.1-font.patch
+License:	GPL+
+URL:		http://www.enormousplow.com/projects/fred/
 Group:		Games/Arcade
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-BuildRequires:	SDL_image-devel zlib-devel SDL_ttf-devel
+BuildRequires:	SDL_image-devel
+BuildRequires:	zlib-devel
+BuildRequires:	SDL_ttf-devel
+Requires:	fonts-ttf-dejavu
 
 %description
 Free Fallin' Fred is a very simple clicking game.
@@ -28,18 +34,21 @@ Don't let Fred die.
 %prep
 %setup -q -n %{name}
 %patch0 -p1
+%patch1 -p1 -b .build
+%patch2 -p1 -b .fonts
 
 %build
-autoconf
+rm -f install-sh
+autoreconf -i
 perl -pi -e 's!DATADIR = "/usr/local/share/games/fred/data/";!DATADIR = "%{_gamesdatadir}/%{name}/data/";!g' src/fred.cpp
-%configure2_5x	--bindir=%{_gamesbindir}
+%configure2_5x --bindir=%{_gamesbindir}
 %make
 
 %install
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 %makeinstall_std
 
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications/
+mkdir -p %{buildroot}%{_datadir}/applications/
 cat << EOF > %buildroot%{_datadir}/applications/mandriva-%{name}.desktop
 [Desktop Entry]
 Type=Application
@@ -50,18 +59,20 @@ Name=Fred
 Comment=%{Summary}
 EOF
 
-%{__install} -m644 %{SOURCE11} -D $RPM_BUILD_ROOT%{_miconsdir}/%{name}.png
-%{__install} -m644 %{SOURCE12} -D $RPM_BUILD_ROOT%{_iconsdir}/%{name}.png
-%{__install} -m644 %{SOURCE13} -D $RPM_BUILD_ROOT%{_liconsdir}/%{name}.png
+%{__install} -m644 %{SOURCE11} -D %{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{name}.png
+%{__install} -m644 %{SOURCE12} -D %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{name}.png
+%{__install} -m644 %{SOURCE13} -D %{buildroot}%{_iconsdir}/hicolor/48x48/apps/%{name}.png
 
 %post
-%update_menus
+%{update_menus}
+%{update_icon_cache hicolor}
 
 %postun
-%clean_menus
+%{clean_menus}
+%{clean_icon_cache hicolor}
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %files
 %defattr(755,root,root,755)
@@ -70,9 +81,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_gamesdatadir}/%{name}
 %{_gamesdatadir}/%{name}/*
 %{_mandir}/man6/fred.6*
-%{_iconsdir}/%{name}.png
-%{_liconsdir}/%{name}.png
-%{_miconsdir}/%{name}.png
+%{_iconsdir}/hicolor/*/apps/%{name}.png
 %{_datadir}/applications/mandriva-%{name}.desktop
 %doc AUTHORS ChangeLog INSTALL NEWS README TODO
 
