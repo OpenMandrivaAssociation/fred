@@ -63,13 +63,17 @@ EOF
 %{__install} -m644 %{SOURCE12} -D %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{name}.png
 %{__install} -m644 %{SOURCE13} -D %{buildroot}%{_iconsdir}/hicolor/48x48/apps/%{name}.png
 
+%if %mdkversion < 200900
 %post
 %{update_menus}
 %{update_icon_cache hicolor}
+%endif
 
+%if %mdkversion < 200900
 %postun
 %{clean_menus}
 %{clean_icon_cache hicolor}
+%endif
 
 %clean
 rm -rf %{buildroot}
