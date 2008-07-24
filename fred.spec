@@ -1,7 +1,7 @@
 Summary:	Simple action game: save Fred from a plummeting death!
 Name:		fred
 Version:	0.1.1
-Release:	%mkrel 2
+Release:	%mkrel 4
 # Upstream source includes arial.ttf. Which is, um, copyright
 # Microsoft. That's not smart. This source is upstream's tarball
 # with arial.ttf and the (likely also copyright someone) grease.ttf
