@@ -56,7 +56,7 @@ Exec=%{_gamesbindir}/%{name}
 Icon=%{name}		  		  
 Categories=Game;ArcadeGame;		  
 Name=Fred 
-Comment=%{Summary}
+Comment=Simple action game: save Fred from a plummeting death
 EOF
 
 %{__install} -m644 %{SOURCE11} -D %{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{name}.png
