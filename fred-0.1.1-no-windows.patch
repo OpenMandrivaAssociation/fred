@@ -1,0 +1,17 @@
+--- fred/configure.in~	2005-01-04 13:10:54.000000000 +0100
++++ fred/configure.in	2005-02-15 18:00:19.614236288 +0100
+@@ -33,5 +33,4 @@ AC_OUTPUT(Makefile         \
+           src/Makefile     \
+ 			 include/Makefile \
+ 			 data/Makefile    \
+-			 windows/Makefile \
+ 			)
+--- fred/Makefile.am~	2005-01-04 13:10:54.000000000 +0100
++++ fred/Makefile.am	2005-02-15 18:02:08.148392199 +0100
+@@ -1,5 +1,5 @@
+ AUTOMAKE_OPTIONS = gnu
+-SUBDIRS = src include data windows
++SUBDIRS = src include data
+ 
+ # man page
+ man_MANS = fred.6

@@ -1,0 +1,33 @@
+--- fred/src/dialogs.cpp	2005-01-04 04:10:49.000000000 -0800
++++ fred/src/dialogs.cpp.new	2008-02-27 22:16:27.000000000 -0800
+@@ -12,7 +12,7 @@
+ 
+ 
+ int begin(Window &window, Images &images, const string &DATADIR) {
+-	string fontName = DATADIR + "grease.ttf";
++	string fontName = "/usr/share/fonts/TTF/dejavu/DejaVuSans.ttf";
+ 	TTF_Font *largeFont = NULL, *smallFont = NULL;
+ 	int done = 0;
+ 	SDL_Color gray = { 0xed, 0xed, 0xed, 0 };
+--- fred/src/scoring.cpp	2005-01-04 04:10:49.000000000 -0800
++++ fred/src/scoring.cpp.new	2008-02-27 22:23:38.000000000 -0800
+@@ -11,7 +11,7 @@
+ #include "scoring.h"
+ 
+ Scoring::Scoring(const string &DATADIR) {
+-	fontName = DATADIR + "arial.ttf";
++	fontName = "/usr/share/fonts/TTF/dejavu/DejaVuSans.ttf";
+ 	font = NULL;
+ 	gray.r = 0xed;
+ 	gray.g = 0xed;
+--- fred/src/dialogs.cpp~	2009-02-22 17:35:52.000000000 +0100
++++ fred/src/dialogs.cpp	2009-02-22 18:09:16.000000000 +0100
+@@ -308,7 +308,7 @@
+ }
+ 
+ int showEnd(Window &window, const string &DATADIR) {
+-	string fontName = DATADIR + "grease.ttf";
++	string fontName = "/usr/share/fonts/TTF/dejavu/DejaVuSans.ttf";
+ 	TTF_Font *smallFont = NULL;
+ 	int done = 0;
+ 	SDL_Color gray = { 0xed, 0xed, 0xed, 0 };

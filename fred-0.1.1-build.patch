@@ -1,0 +1,11 @@
+--- fred/include/images.h	2005-01-04 04:10:48.000000000 -0800
++++ fred/include/images.h.new	2008-02-27 22:04:35.000000000 -0800
+@@ -31,7 +31,7 @@
+ 	public:
+ 		Images(string DATADIR);
+ 		~Images();
+-		int Images::find(string image);
++		int find(string image);
+ 		int getNumberOf();
+ 		ImageData *sprite;
+ 
