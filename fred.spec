@@ -89,3 +89,78 @@ rm -rf %{buildroot}
 %{_datadir}/applications/mandriva-%{name}.desktop
 %doc AUTHORS ChangeLog INSTALL NEWS README TODO
 
+
+
+%changelog
+* Thu Dec 09 2010 Oden Eriksson <oeriksson@mandriva.com> 0.1.1-8mdv2011.0
++ Revision: 618339
+- the mass rebuild of 2010.0 packages
+
+* Fri Sep 11 2009 Thierry Vignaud <tv@mandriva.org> 0.1.1-7mdv2010.0
++ Revision: 437585
+- rebuild
+
+* Sun Feb 22 2009 Nicolas Lécureuil <nlecureuil@mandriva.com> 0.1.1-6mdv2009.1
++ Revision: 343911
+- Fix font patch
+- Fix desktop file
+
+* Sat Feb 21 2009 Nicolas Lécureuil <nlecureuil@mandriva.com> 0.1.1-5mdv2009.1
++ Revision: 343526
+- Remove tabs on the Name
+
+* Thu Jul 24 2008 Thierry Vignaud <tv@mandriva.org> 0.1.1-4mdv2009.0
++ Revision: 245344
+- rebuild
+
+  + Pixel <pixel@mandriva.com>
+    - rpm filetriggers deprecates update_menus/update_scrollkeeper/update_mime_database/update_icon_cache/update_desktop_database/post_install_gconf_schemas
+
+* Thu Feb 28 2008 Adam Williamson <awilliamson@mandriva.org> 0.1.1-2mdv2008.1
++ Revision: 175972
+- rebuild for new era
+- fd.o icons
+- run autoreconf so everything works with modern automake / autoconf
+- add font.patch (use DejaVu instead of the non-free ttf files)
+- add build.patch (fixes an error in a header file that breaks build)
+- new license policy
+- improve summary
+- spec clean
+- use a modified tarball without non-free .ttf files
+
+  + Olivier Blin <oblin@mandriva.com>
+    - restore BuildRoot
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - auto-convert XDG menu entry
+    - kill re-definition of %%buildroot on Pixel's request
+    - use %%mkrel
+    - import fred
+
+
+* Tue Feb 15 2005 Per Øyvind Karlsen <peroyvind@linux-mandrake.com> 0.1.1-1mdk
+- 0.1.1 (it works!)
+- drop P1 (fixed upstream)
+
+* Wed Jun 16 2004 Per �yvind Karlsen <peroyvind@linux-mandrake.com> 0.1.0-4mdk
+- rebuild
+
+* Fri Apr 02 2004 Per Øyvind Karlsen <peroyvind@linux-mandrake.com> 0.1.0-3mdk
+- rebuild
+- fix buildrequires (lib64..)
+- change summary macro to avoid possible conflicts if we were to build debug package
+
+* Thu Mar 20 2003 Per Øyvind Karlsen <peroyvind@sintrax.net> 0.1.0-2mdk
+- switched to other unix specific sources
+- updated Patch1
+- now use configure macro
+- updated docs
+- dropped Patch0
+
+* Tue Feb 25 2003 Per Øyvind Karlsen <peroyvind@sintrax.net> 0.1.0-1mdk
+- Corrected title
+- 0.1.0
+- Don't use the make macro as it won't support multiple jobs
+
+* Thu Nov 19 2002 Per Øyvind Karlsen <peroyvind@delonic.no> 0.0.4-1mdk
+- First release
