@@ -16,7 +16,7 @@ Patch1:		fred-0.1.1-build.patch
 # Use DejaVu instead of arial.ttf and grease.ttf - AdamW 2008/02
 Patch2:		fred-0.1.1-font.patch
 License:	GPL+
-URL:		http://www.enormousplow.com/projects/fred/
+URL:		https://www.enormousplow.com/projects/fred/
 Group:		Games/Arcade
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	SDL_image-devel
