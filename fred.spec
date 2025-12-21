@@ -19,6 +19,11 @@ License:	GPL+
 URL:		https://www.enormousplow.com/projects/fred/
 Group:		Games/Arcade
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	SDL_image-devel
 BuildRequires:	zlib-devel
 BuildRequires:	SDL_ttf-devel
